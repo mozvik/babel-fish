@@ -1,0 +1,47 @@
+<div nz-row nzJustify="center">
+  <h2 nz-typography>Regisztráció</h2>
+</div>
+<div nz-row nzJustify="center" nzAlign="top" class="container">
+  <form nz-form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="nameErrorTemplate">
+        <nz-input-group nzSize="large" nzPrefixIcon="user">
+          <input nz-input type="text" id="name" formControlName="name" placeholder="Neved">
+          <ng-template #nameErrorTemplate let-control>
+            <ng-container *ngIf="control.hasError('minlength')">Legalább 4 karakter hosszú legyen!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Kötelező kitölteni!</ng-container>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTemplate">
+        <nz-input-group nzSize="large" nzPrefixIcon="mail">
+          <input nz-input type="email" id="email" formControlName="email" placeholder="E-mail címed">
+          <ng-template #emailErrorTemplate let-control>
+            <ng-container *ngIf="control.hasError('email')">Érvénytelen e-mail formátum!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Kötelező kitölteni!</ng-container>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzHasFeedback nzErrorTip="Kötelező kitölteni!">
+        <nz-input-group nzSize="large" nzPrefixIcon="phone">
+          <input nz-input type="text" id="phone" formControlName="phone" placeholder="Telefonszámod">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Kötelező elfogadni!">
+        <nz-input-group nzSize="large">
+          <label nz-checkbox id="gdpr" formControlName="gdpr">
+            <span>Elfogadom az adatkezelési nyilatkozatot.</span>
+          </label>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    
+    <button nz-button nzSize="large" type="submit" [disabled]="registerForm.invalid">Regisztrálok</button>
+  </form>
+</div>

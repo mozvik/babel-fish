@@ -1,0 +1,10 @@
+.container{
+  margin-top: 3rem;
+}
+h2{
+  text-transform: uppercase;
+}
+
+nz-form-item{
+  margin-bottom: 2rem;
+}

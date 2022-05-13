@@ -1,0 +1,10 @@
+nz-layout{
+  min-height: 100vh;   
+}
+
+nz-content {
+  max-width: 1024px; 
+  width: 100%;
+  margin: 4rem auto;
+  overflow: hidden;
+}

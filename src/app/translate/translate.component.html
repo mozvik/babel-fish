@@ -1,0 +1,74 @@
+<div nz-row nzJustify="space-between" nzAlign="top">
+  <div class="t-box-left" nz-col nzSpan="11">
+    <form nz-form [formGroup]="sourceForm" (ngSubmit)="translate()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Kötelező kitölteni">
+          <nz-select nzShowSearch nzSize="large" name="languages" id="languages" formControlName="language">
+            <nz-option nzSize="large" [nzLabel]="detectedLanguage ? 'Nyelv észlelve ('+ detectedLanguage +')':'Nyelv felismerése'" nzValue="auto"></nz-option>
+            <nz-option nzSize="large"
+            *ngFor="let language of languages"
+            [nzValue]="language.code" [nzLabel]="language.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Kötelező kitölteni">
+          <nz-input-group [nzSuffix]="textAreaClearTpl" class="ant-input-affix-wrapper-textarea-with-clear-btn">
+            <textarea nz-input [nzAutosize]="{minRows: 10, maxRows: 10}" name="from" id="from" formControlName="text" placeholder="Írj be szöveget"></textarea>
+          </nz-input-group>
+        </nz-form-control>
+          <ng-template #textAreaClearTpl>
+            <i nz-icon
+               *ngIf="sourceForm.value.text"
+               class="ant-input-clear-icon"
+               nzTheme="fill"
+               nzType="close-circle"
+               (click)="resetTextarea()">
+            </i>
+        </ng-template>
+      </nz-form-item>
+      
+      <div nz-row nzJustify="start">
+        <button 
+        [nzLoading]="isLoading"
+        nz-button nzSize="large" nzType="default" nzLoading="false" [disabled]="sourceForm.invalid || translateCount>2">
+          <i nz-icon nzType="translation"></i>
+        Fordítás
+        </button>
+      </div>
+            
+    </form>
+  </div>
+  <div class="swap-btn" nz-col nzSpan="2">
+    <button nz-button nzSize="large" nzType="default" (click)="swap()" [disabled]="sourceForm.value.language==='auto'"><i nz-icon nzType="swap"></i></button>
+  </div>
+  <div class="t-box-right" nz-col nzSpan="11">
+    <form nz-form [formGroup]="targetForm">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Kötelező kitölteni">
+          <nz-select nzShowSearch nzSize="large" name="languages" id="languages" formControlName="language">
+            <nz-option nzSize="large"
+            *ngFor="let language of languages"
+            [nzValue]="language.code" [nzLabel]="language.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzSuffix]="" class="ant-input-affix-wrapper-textarea-with-clear-btn">
+              <textarea nz-input [nzAutosize]="{minRows: 10, maxRows: 10}" name="to" id="to" formControlName="text" placeholder="Fordítás"></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      
+    </form>
+    <div nz-row nzJustify="end">
+      <button *ngIf="!isRegistered" nz-button nzSize="large" nzType="default" routerLink="/register">Regisztrálok!</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+

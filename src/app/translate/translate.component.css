@@ -1,0 +1,9 @@
+.t-box-left, .t-box-right, .swap-btn{
+  margin-top: 3rem;
+}
+.swap-btn{
+  text-align: center;
+}
+::ng-deep .ant-input-suffix{
+  margin-left: 0;
+}
